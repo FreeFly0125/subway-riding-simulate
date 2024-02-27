@@ -11,13 +11,13 @@
 		"experimentalDecorators": true,
 		"importHelpers": true,
 		"skipLibCheck": true,
-		"outDir": "./dist/server",
+		"outDir": "./dist/src",
 		"lib": ["es5", "es6", "ES2019"],
 		"moduleResolution": "node",
 		"types": ["node"],
 		"incremental": true,
 		"composite": true,
-		"baseUrl": "server"
+		"baseUrl": "src"
 	},
 	"ts-node": {
 		"require": ["tsconfig-paths/register"]
