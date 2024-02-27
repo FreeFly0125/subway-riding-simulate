@@ -5,9 +5,7 @@ import express, { Express } from "express";
 
 import { ROUTE_VERSION } from "config";
 
-import { MESSAGES } from "consts";
-
-import { errorHandlerMiddleware, requestLoggerMiddleware } from "middlewares";
+import { SUCCESSFULLY_STARTED } from "consts";
 
 import appRoutes from "routes";
 
@@ -18,8 +16,6 @@ export const backendSetup = (app: Express) => {
 	app.use(cors());
 	app.use(bodyParserJSON());
 
-	app.use(requestLoggerMiddleware);
-
 	// Health check
 	app.use("/health", function (_req, res) {
 		res.send("OK");
@@ -27,9 +23,7 @@ export const backendSetup = (app: Express) => {
 
 	app.use(`/api/${ROUTE_VERSION}`, appRoutes);
 
-	app.use(errorHandlerMiddleware);
-
 	app.listen(port, () => {
-		console.info(MESSAGES.SERVER.SUCCESSFULLY_STARTED);
+		console.info(SUCCESSFULLY_STARTED);
 	});
 };

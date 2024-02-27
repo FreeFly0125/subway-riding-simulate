@@ -1,0 +1,1 @@
+export const SUCCESSFULLY_STARTED = "Server is Running!";
