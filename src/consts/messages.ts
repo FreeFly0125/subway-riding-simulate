@@ -1,1 +1,1 @@
-export const SUCCESSFULLY_STARTED = "Server is Running!";
+export const SERVER_SUCCESSFULLY_STARTED = "Server started!";

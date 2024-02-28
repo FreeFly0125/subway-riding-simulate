@@ -1,4 +1,4 @@
-import { createLine } from "./line.controller";
-import { getPath } from "./path.controller";
-
-export { createLine, getPath };
+export * as stationController from "./station.controller";
+export * as lineController from "./trainline.controller";
+export * as cardController from "./card.controller";
+export * from "./path.controller";
