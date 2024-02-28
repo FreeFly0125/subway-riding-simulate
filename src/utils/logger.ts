@@ -1,23 +1,23 @@
 class CustomLogger {
-	log(...args) {
-		console.log(...args);
-	}
+  log(...args) {
+    console.log(...args);
+  }
 
-	info(...args) {
-		console.info(...args);
-	}
+  info(...args) {
+    console.info(...args);
+  }
 
-	error(...args) {
-		console.error(...args);
-	}
+  error(...args) {
+    console.error(...args);
+  }
 
-	group(...args) {
-		console.group(...args);
-	}
+  group(...args) {
+    console.group(...args);
+  }
 
-	groupEnd() {
-		console.groupEnd();
-	}
+  groupEnd() {
+    console.groupEnd();
+  }
 }
 
 export const Logger = new CustomLogger();

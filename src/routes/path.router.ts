@@ -1,7 +1,8 @@
-import { getPath } from "controllers";
+import { searchPath } from "controllers";
+import express from "express";
 
-const pathRouter = require("express").Router();
+const pathRouter = express.Router();
 
-pathRouter.get("/", getPath);
+pathRouter.get("/", searchPath);
 
 export default pathRouter;
