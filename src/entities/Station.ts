@@ -7,6 +7,6 @@ export class StationEntity {
   @PrimaryGeneratedColumn({name: 'id'})
   id: number;
 
-  @Column({name: 'name'})
+  @Column({name: 'name', unique: true})
   name: string;
 }
