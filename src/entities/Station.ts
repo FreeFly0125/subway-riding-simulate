@@ -12,4 +12,7 @@ export class StationEntity {
 
   @Column({name: 'fare', type: 'float8'})
   fare: number;
+
+  @Column({name: 'nbrstation', type: 'text', array: true})
+  neighbors: string[];
 }

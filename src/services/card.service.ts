@@ -19,10 +19,7 @@ export const createCardService = async (number: string, amount: number) => {
     let newCard = await cardRepository.findOne({ where: {number: number} });
 
     if (!newCard) {
-        newCard = new CardEntity();
-        newCard.number = number;
-        newCard.amount = amount;
-        newCard.riding = false;
+        newCard = cardRepository.create({number: number, amount: amount, riding: false});
     } else {
         newCard.amount += amount;
     }
