@@ -1,13 +1,26 @@
+import { TrainLineEntity } from "entities";
 import { Request, Response } from "express";
+import httpStatus from "http-status";
+import { createLineService, getLineService, getLinesService } from "services/trainline.service";
 
-export const getTrainLine = (req: Request, res: Response) => {
-  console.log("Get Trainline!");
+export const getTrainLine = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const line = await getLineService(parseInt(id));
+  res.status(httpStatus.OK).json(line);
 };
 
-export const getTrainLines = (req: Request, res: Response) => {
-  console.log("Get Trainlines!");
+export const getTrainLines = async (req: Request, res: Response) => {
+  const lines = await getLinesService();
+  res.status(httpStatus.OK).json(lines);
 };
 
-export const createTrainLine = (req: Request, res: Response) => {
-  console.log("Create TrainLines!");
+export const createTrainLine = async (req: Request, res: Response) => {
+  const line = new TrainLineEntity();
+  const { name, stations } = req.body;
+
+  line.name = name;
+  line.stations = stations;
+
+  const resLine = await createLineService(line);
+  res.status(httpStatus.OK).json(resLine);
 };
