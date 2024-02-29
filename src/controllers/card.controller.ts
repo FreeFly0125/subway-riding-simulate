@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import { createCardService, getCardService, getCardsService } from "services/card.service";
+import {
+  createCardService,
+  getCardService,
+  getCardsService,
+} from "services/card.service";
 
 export const getCard = async (req: Request, res: Response) => {
   const id = req.params.id;
@@ -14,7 +18,6 @@ export const getCards = async (req: Request, res: Response) => {
 };
 
 export const createNewCard = async (req: Request, res: Response) => {
-  console.log('here', req.body);
   const { number, amount } = req.body;
   const newCard = await createCardService(number, amount);
   res.status(httpStatus.OK).json(newCard);

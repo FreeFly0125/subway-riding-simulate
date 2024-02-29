@@ -17,7 +17,7 @@ app
   .use(cors())
   .use(express.json())
   .use(requestLoggerMiddleware)
-  .use('/health', (_req, res) => res.send('OK'))
+  .use("/health", (_req, res) => res.send("OK"))
   .use(`/api/${ROUTE_VERSION}`, appRouter);
 
 const PORT = process.env.SERBER_PORT || 8000;
@@ -28,7 +28,7 @@ const dbSetup = async (next: NextFunction) => {
     Logger.log(MESSAGES.DATABASE_CONNECT_SUCCESS);
     next();
   } catch (error) {
-    Logger.error(MESSAGES.DATABASE_CONNECT_FAILED, '\n', error);
+    Logger.error(MESSAGES.DATABASE_CONNECT_FAILED, "\n", error);
   }
 };
 
@@ -38,6 +38,6 @@ dbSetup(() => {
       Logger.log(MESSAGES.SERVER_RUNNING_SUCCESS);
     });
   } catch (error) {
-    Logger.error(MESSAGES.SERVER_RUNNING_FAILED, '\n', error);
+    Logger.error(MESSAGES.SERVER_RUNNING_FAILED, "\n", error);
   }
 });

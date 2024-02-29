@@ -6,9 +6,9 @@ import pathRouter from "./path.router";
 
 const appRouter = express.Router();
 
-appRouter.use('/train-line', lineRouter);
-appRouter.use('/card', cardRouter);
-appRouter.use('/station', stationRouter);
-appRouter.use('/route', pathRouter);
+appRouter.use("/train-line", lineRouter);
+appRouter.use("/card", cardRouter);
+appRouter.use("/station", stationRouter);
+appRouter.use("/route", pathRouter);
 
 export default appRouter;
