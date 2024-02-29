@@ -1,11 +1,11 @@
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity({ name: 'trainline' })
-export class TrainLine {
-  @PrimaryGeneratedColumn()
+export class TrainLineEntity {
+  @PrimaryGeneratedColumn({ name: "id" })
   id: number;
 
-  @Column()
+  @Column({ name: "name" })
   name: string;
 
   @Column({ name: 'stations', type: 'text', array: true })

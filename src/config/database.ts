@@ -1,6 +1,6 @@
-import { Card } from "entities/Card";
-import { Station } from "entities/Station";
-import { TrainLine } from "entities/TrainLine";
+import { CardEntity } from "entities/Card";
+import { StationEntity } from "entities/Station";
+import { TrainLineEntity } from "entities/TrainLine";
 import { DataSourceOptions } from "typeorm";
 import { Logger } from "utils";
 
@@ -13,7 +13,7 @@ export const dbConfig: DataSourceOptions = {
   username: process.env.DATABASE_USERNAME,
   password: String(process.env.DATABASE_PASSWORD),
   database: process.env.DATABASE_DBNAME,
-  entities: [Card, Station, TrainLine],
+  entities: [CardEntity, StationEntity, TrainLineEntity],
   synchronize: true,
   logging: false,
   name: "parker",

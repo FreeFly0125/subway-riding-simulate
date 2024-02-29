@@ -3,8 +3,8 @@ import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 @Entity({
     name: 'card'
 })
-export class Card {
-  @PrimaryGeneratedColumn()
+export class CardEntity {
+  @PrimaryGeneratedColumn({ name: "id"})
   id: number;
 
   @Column({ name: 'number' })
