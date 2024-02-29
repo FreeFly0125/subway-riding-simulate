@@ -16,7 +16,7 @@ export const createLineService = async (name: string, stations: string[]) => {
 export const getLinesService = async () => {
   const lineRepository = await getLineRepository();
 
-  const lines = lineRepository.find({ order: { id: "ASC" } });
+  const lines = lineRepository.find({ order: { id: 'ASC' } });
 
   return lines;
 };

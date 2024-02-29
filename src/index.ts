@@ -17,7 +17,7 @@ app
   .use(cors())
   .use(express.json())
   .use(requestLoggerMiddleware)
-  .use("/health", (_req, res) => res.send("OK"))
+  .use('/health', (_req, res) => res.send('OK'))
   .use(`/api/${ROUTE_VERSION}`, appRouter);
 
 const PORT = process.env.SERBER_PORT || 8000;
