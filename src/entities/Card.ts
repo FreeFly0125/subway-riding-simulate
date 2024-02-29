@@ -10,7 +10,7 @@ export class CardEntity {
   @Column({ name: 'number' })
   number: string;
 
-  @Column({ name: 'amount' })
+  @Column({ name: 'amount', type: 'float8' })
   amount: number;
 
   @Column({ name: 'riding' })

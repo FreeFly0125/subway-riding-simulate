@@ -16,10 +16,16 @@ export const getCardService = async (id: number) => {
 export const createCardService = async (number: string, amount: number) => {
     const cardRepository = await getCardRepository();
 
-    const newCard = new CardEntity();
-    newCard.number = number;
-    newCard.amount = amount;
-    newCard.riding = false;
+    let newCard = await cardRepository.findOne({ where: {number: number} });
+
+    if (!newCard) {
+        newCard = new CardEntity();
+        newCard.number = number;
+        newCard.amount = amount;
+        newCard.riding = false;
+    } else {
+        newCard.amount += amount;
+    }
 
     const retCard = await cardRepository.save(newCard);
 

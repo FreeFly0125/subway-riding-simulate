@@ -14,7 +14,6 @@ export const getCards = async (req: Request, res: Response) => {
 };
 
 export const createNewCard = async (req: Request, res: Response) => {
-  console.log('here', req.body);
   const { number, amount } = req.body;
   const newCard = await createCardService(number, amount);
   res.status(httpStatus.OK).json(newCard);

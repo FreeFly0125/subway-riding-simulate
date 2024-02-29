@@ -9,4 +9,7 @@ export class StationEntity {
 
   @Column({name: 'name', unique: true})
   name: string;
+
+  @Column({name: 'fare', type: 'float8'})
+  fare: number;
 }

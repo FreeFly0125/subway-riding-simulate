@@ -1,7 +1,7 @@
 import { StationEntity, TrainLineEntity } from "entities";
 import { getLineRepository, getStationRepository } from "repositories";
 
-export const createLineService = async (name: string, stations: string[]) => {
+export const createLineService = async (name: string, stations: string[], fare: number) => {
   const lineRepository = await getLineRepository();
   const stationRepository = await getStationRepository();
 
@@ -12,7 +12,10 @@ export const createLineService = async (name: string, stations: string[]) => {
     stations.map(async (stationName) => {
       let station = await stationRepository.findOne({ where: { name: stationName }});
       if (!station) {
-        station = stationRepository.create({ name: stationName });
+        station = stationRepository.create({ name: stationName, fare: fare });
+        await stationRepository.save(station);
+      } else {
+        station.fare = station.fare < fare ? station.fare: fare;
         await stationRepository.save(station);
       }
       return station;
@@ -20,6 +23,7 @@ export const createLineService = async (name: string, stations: string[]) => {
   );
 
   newLine.stations = stations;
+  newLine.fare = fare;
 
   const line = await lineRepository.save(newLine);
   return line;

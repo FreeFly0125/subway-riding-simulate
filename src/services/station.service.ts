@@ -12,17 +12,19 @@ export const getStationService = async (id: number) => {
     return station
 };
 
-export const enterStationService = async (number: string) => {
-    // const stationRepository = await getStationRepository();
+export const enterStationService = async (stationName: string, number: string) => {
+    const stationRepository = await getStationRepository();
     const cardRepository = await getCardRepository();
 
+    const station = await stationRepository.findOne({ where: {name: stationName} });
     const card = await cardRepository.findOne({ where: { number: number } });
     card.riding = true;
+    card.amount -= station.fare;
     return cardRepository.save(card);
 };
 
-export const exitStationService = async (number: string) => {
-    // const stationRepository = await getStationRepository();
+export const exitStationService = async (stationName: string, number: string) => {
+    const stationRepository = await getStationRepository();
     const cardRepository = await getCardRepository();
 
     const card = await cardRepository.findOne({ where: { number: number } });

@@ -15,7 +15,7 @@ export const getTrainLines = async (req: Request, res: Response) => {
 };
 
 export const createTrainLine = async (req: Request, res: Response) => {
-  const { name, stations } = req.body;
-  const resLine = await createLineService(name, stations);
+  const { name, stations, fare } = req.body;
+  const resLine = await createLineService(name, stations, fare);
   res.status(httpStatus.OK).json(resLine);
 };

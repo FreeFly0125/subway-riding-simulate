@@ -10,4 +10,7 @@ export class TrainLineEntity {
 
   @Column({ name: 'stations', type: 'text', array: true })
   stations: string[];
+
+  @Column({ name: 'fare', type: 'float8' })
+  fare: number;
 }
