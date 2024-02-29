@@ -1,10 +1,14 @@
 import { TrainLineEntity } from "entities";
 import { getLineRepository } from "repositories";
 
-export const createLineService = async (line: TrainLineEntity) => {
+export const createLineService = async (name: string, stations: string[]) => {
   const lineRepository = await getLineRepository();
 
-  await lineRepository.save(line);
+  const newLine = new TrainLineEntity();
+  newLine.name = name;
+  newLine.stations = stations;
+
+  const line = await lineRepository.save(newLine);
 
   return line;
 };
