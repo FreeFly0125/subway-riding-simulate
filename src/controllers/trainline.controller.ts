@@ -15,12 +15,7 @@ export const getTrainLines = async (req: Request, res: Response) => {
 };
 
 export const createTrainLine = async (req: Request, res: Response) => {
-  const line = new TrainLineEntity();
   const { name, stations } = req.body;
-
-  line.name = name;
-  line.stations = stations;
-
-  const resLine = await createLineService(line);
+  const resLine = await createLineService(name, stations);
   res.status(httpStatus.OK).json(resLine);
 };
