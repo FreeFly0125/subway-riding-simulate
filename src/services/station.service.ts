@@ -2,8 +2,10 @@ import { getCardRepository, getStationRepository } from "repositories";
 
 export const getNeighborStationService = async () => {
   const stationRepository = await getStationRepository();
-  const stations = await stationRepository.find({select: ['name', 'neighbors']});
-  return stations
+  const stations = await stationRepository.find({
+    select: ["name", "neighbors"],
+  });
+  return stations;
 };
 
 export const getStationsService = async () => {

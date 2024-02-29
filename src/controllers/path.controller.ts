@@ -20,7 +20,9 @@ export const searchPath = async (req: Request, res: Response) => {
       if (!path.includes(neiStation)) {
         path.push(neiStation);
         const result = searchPath(path);
-        if (result) { return result; }
+        if (result) {
+          return result;
+        }
         path.pop();
       }
     }

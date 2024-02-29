@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import { enterStationService, exitStationService, getStationService, getStationsService } from "services/station.service";
+import {
+  enterStationService,
+  exitStationService,
+  getStationService,
+  getStationsService,
+} from "services/station.service";
 
 export const getStation = async (req: Request, res: Response) => {
   const id = req.params.id;

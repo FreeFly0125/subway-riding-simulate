@@ -4,10 +4,10 @@ import { TrainLineEntity } from "entities/TrainLine";
 import { DataSourceOptions } from "typeorm";
 import { Logger } from "utils";
 
-require('dotenv').config();
+require("dotenv").config();
 
 export const dbConfig: DataSourceOptions = {
-  type: 'postgres',
+  type: "postgres",
   host: process.env.DATABASE_HOST,
   port: parseInt(process.env.DATABASE_PORT),
   username: process.env.DATABASE_USERNAME,
@@ -16,5 +16,5 @@ export const dbConfig: DataSourceOptions = {
   entities: [CardEntity, StationEntity, TrainLineEntity],
   synchronize: true,
   logging: false,
-  name: 'parker',
+  name: "parker",
 };

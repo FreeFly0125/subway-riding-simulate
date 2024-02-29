@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
-import { createCardService, getCardService, getCardsService } from "services/card.service";
+import {
+  createCardService,
+  getCardService,
+  getCardsService,
+} from "services/card.service";
 
 export const getCard = async (req: Request, res: Response) => {
   const id = req.params.id;
