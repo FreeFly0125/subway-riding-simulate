@@ -39,7 +39,7 @@ export const enterStation = async (req: Request, res: Response) => {
   } else if (response === STATUS.ALREADY_RIDING) {
     res.status(httpStatus.OK).send(MESSAGES.ALREADY_IN_SUBWAY);
   } else if (response === STATUS.NOT_ENOUGH_MONEY) {
-    res.status(httpStatus.OK).send(MESSAGES.ALREADY_OUT_OF_SUBWAY);
+    res.status(httpStatus.OK).send(MESSAGES.NOT_ENOUGH_MONEY);
   } else {
     res.status(httpStatus.OK).json(response);
   }
