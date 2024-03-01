@@ -1,5 +1,9 @@
-export const TRAIN_LINE_EXIST = 0;
-export const CARD_NOT_EXIST = 1;
-export const ALREADY_RIDING = 2;
-export const NOT_ENOUGH_MONEY = 3;
-export const ALREADY_EXIT = 4;
+export enum STATUS {
+    TRAIN_LINE_EXIST,
+    CARD_NOT_EXIST,
+    ALREADY_RIDING,
+    NOT_ENOUGH_MONEY,
+    ALREADY_EXIT,
+    STATION_NOT_EXIST,
+    LINE_NOT_EXIST,
+};

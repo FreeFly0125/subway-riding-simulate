@@ -10,8 +10,18 @@ import {
 
 export const getStationByName = async (req: Request, res: Response) => {
   const name = req.params.name;
-  const station = await getStationByNameService(name);
-  res.status(httpStatus.OK).json(station);
+
+  console.log ("inController: ", name);
+
+  const response = await getStationByNameService(name);
+
+  console.log ("inController: ", response);
+
+  if (response === STATUS.STATION_NOT_EXIST) {
+    res.status(httpStatus.OK).send(MESSAGES.STATION_DOES_NOT_EXIST);
+  } else {
+    res.status(httpStatus.OK).json(response);
+  }
 };
 
 export const getStations = async (req: Request, res: Response) => {
@@ -41,6 +51,7 @@ export const exitStation = async (req: Request, res: Response) => {
   const response = await exitStationService(stationName, number);
   if (response === STATUS.ALREADY_EXIT) {
     res.status(httpStatus.OK).send(MESSAGES.ALREADY_OUT_OF_SUBWAY);
+  } else {
+    res.status(httpStatus.OK).json(response);
   }
-  res.status(httpStatus.OK).json(response);
 };

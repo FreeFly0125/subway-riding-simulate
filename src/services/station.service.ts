@@ -17,7 +17,12 @@ export const getStationsService = async () => {
 
 export const getStationByNameService = async (name: string) => {
   const stationRepository = await getStationRepository();
-  const station = stationRepository.findOne({ where: { name: name } });
+  const station = await stationRepository.findOne({ where: { name: name } });
+  console.log("inService: ", station);
+  if (!station) {
+    console.log("inService: not exist");
+    return STATUS.STATION_NOT_EXIST;
+  }
   return station;
 };
 
@@ -27,16 +32,22 @@ export const enterStationService = async (
 ) => {
   const cardRepository = await getCardRepository();
   const card = await cardRepository.findOne({ where: { number: number } });
-  
-  if (!card) { return STATUS.CARD_NOT_EXIST; }
-  if (card.riding) { return STATUS.ALREADY_RIDING; }
-  
+
+  if (!card) {
+    return STATUS.CARD_NOT_EXIST;
+  }
+  if (card.riding) {
+    return STATUS.ALREADY_RIDING;
+  }
+
   const stationRepository = await getStationRepository();
   const station = await stationRepository.findOne({
     where: { name: stationName },
   });
 
-  if (card.amount < station.fare) { return STATUS.NOT_ENOUGH_MONEY; }
+  if (card.amount < station.fare) {
+    return STATUS.NOT_ENOUGH_MONEY;
+  }
 
   card.riding = true;
   card.amount -= station.fare;

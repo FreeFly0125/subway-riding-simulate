@@ -1,4 +1,4 @@
-import { CardEntity } from "entities";
+import { STATUS } from "consts";
 import { getCardRepository } from "repositories";
 
 export const getCardsService = async () => {
@@ -10,6 +10,9 @@ export const getCardsService = async () => {
 export const getCardByNumberService = async (number: string) => {
   const cardRepository = await getCardRepository();
   const card = cardRepository.findOne({ where: { number: number } });
+  if (!card) {
+    return STATUS.CARD_NOT_EXIST;
+  }
   return card;
 };
 

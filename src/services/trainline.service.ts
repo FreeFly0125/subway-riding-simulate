@@ -1,5 +1,4 @@
 import { STATUS } from "consts";
-import { StationEntity, TrainLineEntity } from "entities";
 import { getLineRepository, getStationRepository } from "repositories";
 
 const addNeighborStation = async (preStationName, curStationName) => {
@@ -42,7 +41,9 @@ export const createLineService = async (
   fare: number
 ) => {
   const lineRepository = await getLineRepository();
-  const isExistingLine = await lineRepository.findOne({ where: { name: name } });
+  const isExistingLine = await lineRepository.findOne({
+    where: { name: name },
+  });
   if (isExistingLine) {
     return STATUS.TRAIN_LINE_EXIST;
   }
@@ -81,13 +82,15 @@ export const createLineService = async (
 
 export const getLinesService = async () => {
   const lineRepository = await getLineRepository();
-  const lines = lineRepository.find({ order: { id: "ASC" } });
+  const lines = await lineRepository.find({ order: { id: "ASC" } });
   return lines;
 };
 
 export const getLineByNameService = async (name: string) => {
   const lineRepository = await getLineRepository();
-  const lines = lineRepository.findOne({ where: { name: name } });
-  return lines;
+  const line = await lineRepository.findOne({ where: { name: name } });
+  if (!line) {
+    return STATUS.LINE_NOT_EXIST;
+  }
+  return line;
 };
-
