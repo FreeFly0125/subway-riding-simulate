@@ -3,16 +3,9 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import {
   createLineService,
-  getLineByIDService,
   getLineByNameService,
   getLinesService,
 } from "services/trainline.service";
-
-export const getTrainLineByID = async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const line = await getLineByIDService(parseInt(id));
-  res.status(httpStatus.OK).json(line);
-};
 
 export const getTrainLineByName = async (req: Request, res: Response) => {
   const name = req.params.name;

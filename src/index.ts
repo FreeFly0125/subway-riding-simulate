@@ -41,3 +41,5 @@ dbSetup(() => {
     Logger.error(MESSAGES.SERVER_RUNNING_FAILED, "\n", error);
   }
 });
+
+export default app;

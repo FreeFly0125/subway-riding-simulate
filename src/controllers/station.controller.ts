@@ -3,16 +3,9 @@ import httpStatus from "http-status";
 import {
   enterStationService,
   exitStationService,
-  getStationByIDService,
   getStationByNameService,
   getStationsService,
 } from "services/station.service";
-
-export const getStationByID = async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const station = await getStationByIDService(parseInt(id));
-  res.status(httpStatus.OK).json(station);
-};
 
 export const getStationByName = async (req: Request, res: Response) => {
   const name = req.params.name;
@@ -28,6 +21,7 @@ export const getStations = async (req: Request, res: Response) => {
 export const enterStation = async (req: Request, res: Response) => {
   const stationName = req.params.station;
   const { number } = req.body;
+  console.log ("paramsparamsparamsparamsparamsparams: ", req.params);
   const cardStatus = await enterStationService(stationName, number);
   res.status(httpStatus.OK).json(cardStatus);
 };

@@ -4,11 +4,8 @@
   "description": "NodeJS TypeScript Template",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.ts"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dreamcatcher0101/nodejs-typescript-template.git"
+    "start": "nodemon src/index.ts",
+    "test": "mocha tests/**/*.ts --require ts-node/esm --exit --timeout 5000ms"
   },
   "keywords": [
     "NodeJS",
@@ -16,10 +13,6 @@
   ],
   "author": "Dream Catcher",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/dreamcatcher0101/nodejs-typescript-template/issues"
-  },
-  "homepage": "https://github.com/dreamcatcher0101/nodejs-typescript-template#readme",
   "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
@@ -32,11 +25,16 @@
     "uuid": "^9.0.0"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.12",
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^18.15.11",
+    "chai": "^4.2.0",
     "dotenv": "^16.4.5",
+    "mocha": "^10.3.0",
     "nodemon": "^2.0.22",
+    "supertest": "^6.3.4",
     "ts-node": "^10.9.1",
     "tsconfig-paths": "^4.2.0",
     "tslib": "^2.5.0",

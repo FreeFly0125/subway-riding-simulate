@@ -14,12 +14,6 @@ export const getStationsService = async () => {
   return stations;
 };
 
-export const getStationByIDService = async (id: number) => {
-  const stationRepository = await getStationRepository();
-  const station = stationRepository.findOne({ where: { id: id } });
-  return station;
-};
-
 export const getStationByNameService = async (name: string) => {
   const stationRepository = await getStationRepository();
   const station = stationRepository.findOne({ where: { name: name } });
@@ -36,7 +30,9 @@ export const enterStationService = async (
   const station = await stationRepository.findOne({
     where: { name: stationName },
   });
+  console.log ("fare: ", station.fare);
   const card = await cardRepository.findOne({ where: { number: number } });
+  console.log ("amount: ", card.amount);
   card.riding = true;
   card.amount -= station.fare;
   return cardRepository.save(card);

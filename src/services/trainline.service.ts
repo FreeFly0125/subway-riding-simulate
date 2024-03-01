@@ -79,12 +79,6 @@ export const getLinesService = async () => {
   return lines;
 };
 
-export const getLineByIDService = async (id: number) => {
-  const lineRepository = await getLineRepository();
-  const lines = lineRepository.findOne({ where: { id: id } });
-  return lines;
-};
-
 export const getLineByNameService = async (name: string) => {
   const lineRepository = await getLineRepository();
   const lines = lineRepository.findOne({ where: { name: name } });
