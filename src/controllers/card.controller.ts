@@ -1,3 +1,4 @@
+import { MESSAGES, STATUS } from "consts";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import {
@@ -8,8 +9,12 @@ import {
 
 export const getCardByNumber = async (req: Request, res: Response) => {
   const number = req.params.number;
-  const cards = await getCardByNumberService(number);
-  res.status(httpStatus.OK).json(cards);
+  const response = await getCardByNumberService(number);
+  if (response === STATUS.CARD_NOT_EXIST) { 
+    res.status(httpStatus.NOT_FOUND).send(MESSAGES.CARD_NOT_EXIST);
+  } else {
+    res.status(httpStatus.OK).json(response);
+  }
 };
 
 export const getCards = async (req: Request, res: Response) => {
