@@ -1,3 +1,4 @@
+import { MESSAGES } from "consts";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { getNeighborStationService } from "services/station.service";
@@ -30,6 +31,9 @@ export const searchPath = async (req: Request, res: Response) => {
   };
 
   const path = searchPath([originStation]);
-
-  res.status(httpStatus.OK).json({ route: path });
+  if (path === null) {
+    res.status(httpStatus.NOT_FOUND).send(MESSAGES.NO_ROUTE_BETWEEN_STATIONS);
+  } else {
+    res.status(httpStatus.OK).json({ route: path });
+  }
 };

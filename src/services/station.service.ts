@@ -18,9 +18,7 @@ export const getStationsService = async () => {
 export const getStationByNameService = async (name: string) => {
   const stationRepository = await getStationRepository();
   const station = await stationRepository.findOne({ where: { name: name } });
-  console.log("inService: ", station);
   if (!station) {
-    console.log("inService: not exist");
     return STATUS.STATION_NOT_EXIST;
   }
   return station;
@@ -60,6 +58,9 @@ export const exitStationService = async (
 ) => {
   const cardRepository = await getCardRepository();
   const card = await cardRepository.findOne({ where: { number: number } });
+  if (!card) {
+    return STATUS.CARD_NOT_EXIST;
+  }
   if (card.riding === false) {
     return STATUS.ALREADY_EXIT;
   }

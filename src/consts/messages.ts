@@ -12,3 +12,5 @@ export const NOT_ENOUGH_MONEY = "There's not enough money in the card!";
 
 export const STATION_DOES_NOT_EXIST = "There's no station with the name!";
 export const TRAINLINE_DOES_NOT_EXIST = "There's no line with the name!";
+
+export const NO_ROUTE_BETWEEN_STATIONS = "There's not route to the station!";
