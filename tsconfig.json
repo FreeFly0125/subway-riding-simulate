@@ -14,7 +14,7 @@
 		"outDir": "./dist",
 		"lib": ["es5", "es6", "ES2019"],
 		"moduleResolution": "node",
-		"types": ["node"],
+		"types": ["node", "mocha"],
 		"incremental": true,
 		"composite": true,
 		"baseUrl": "src"

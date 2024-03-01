@@ -31,5 +31,5 @@ export const searchPath = async (req: Request, res: Response) => {
 
   const path = searchPath([originStation]);
 
-  res.status(httpStatus.OK).send(path);
+  res.status(httpStatus.OK).json({ route: path});
 };

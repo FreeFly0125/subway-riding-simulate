@@ -1,7 +1,7 @@
 import {
   enterStation,
   exitStation,
-  getStation,
+  getStationByName,
   getStations,
 } from "controllers/station.controller";
 import express from "express";
@@ -9,7 +9,7 @@ import express from "express";
 const stationRouter = express.Router();
 
 stationRouter.get("/", getStations);
-stationRouter.get("/:id", getStation);
+stationRouter.get("/:name", getStationByName);
 stationRouter.post("/:station/enter", enterStation);
 stationRouter.post("/:station/exit", exitStation);
 

@@ -2,13 +2,13 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import {
   createCardService,
-  getCardService,
+  getCardByNumberService,
   getCardsService,
 } from "services/card.service";
 
-export const getCard = async (req: Request, res: Response) => {
-  const id = req.params.id;
-  const cards = await getCardService(parseInt(id));
+export const getCardByNumber = async (req: Request, res: Response) => {
+  const number = req.params.number;
+  const cards = await getCardByNumberService(number);
   res.status(httpStatus.OK).json(cards);
 };
 
