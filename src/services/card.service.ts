@@ -7,9 +7,15 @@ export const getCardsService = async () => {
   return cards;
 };
 
-export const getCardService = async (id: number) => {
+export const getCardByIDService = async (id: number) => {
   const cardRepository = await getCardRepository();
   const card = cardRepository.findOne({ where: { id: id } });
+  return card;
+};
+
+export const getCardByNumberService = async (number: string) => {
+  const cardRepository = await getCardRepository();
+  const card = cardRepository.findOne({ where: { number: number } });
   return card;
 };
 

@@ -3,13 +3,20 @@ import httpStatus from "http-status";
 import {
   enterStationService,
   exitStationService,
-  getStationService,
+  getStationByIDService,
+  getStationByNameService,
   getStationsService,
 } from "services/station.service";
 
-export const getStation = async (req: Request, res: Response) => {
+export const getStationByID = async (req: Request, res: Response) => {
   const id = req.params.id;
-  const station = await getStationService(parseInt(id));
+  const station = await getStationByIDService(parseInt(id));
+  res.status(httpStatus.OK).json(station);
+};
+
+export const getStationByName = async (req: Request, res: Response) => {
+  const name = req.params.name;
+  const station = await getStationByNameService(name);
   res.status(httpStatus.OK).json(station);
 };
 

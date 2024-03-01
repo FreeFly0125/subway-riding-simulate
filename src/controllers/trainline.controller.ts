@@ -3,13 +3,20 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import {
   createLineService,
-  getLineService,
+  getLineByIDService,
+  getLineByNameService,
   getLinesService,
 } from "services/trainline.service";
 
-export const getTrainLine = async (req: Request, res: Response) => {
+export const getTrainLineByID = async (req: Request, res: Response) => {
   const id = req.params.id;
-  const line = await getLineService(parseInt(id));
+  const line = await getLineByIDService(parseInt(id));
+  res.status(httpStatus.OK).json(line);
+};
+
+export const getTrainLineByName = async (req: Request, res: Response) => {
+  const name = req.params.name;
+  const line = await getLineByNameService(name);
   res.status(httpStatus.OK).json(line);
 };
 

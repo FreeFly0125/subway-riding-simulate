@@ -14,9 +14,15 @@ export const getStationsService = async () => {
   return stations;
 };
 
-export const getStationService = async (id: number) => {
+export const getStationByIDService = async (id: number) => {
   const stationRepository = await getStationRepository();
   const station = stationRepository.findOne({ where: { id: id } });
+  return station;
+};
+
+export const getStationByNameService = async (name: string) => {
+  const stationRepository = await getStationRepository();
+  const station = stationRepository.findOne({ where: { name: name } });
   return station;
 };
 
