@@ -1,3 +1,4 @@
+import { STATUS } from "consts";
 import { StationEntity, TrainLineEntity } from "entities";
 import { getLineRepository, getStationRepository } from "repositories";
 
@@ -41,6 +42,11 @@ export const createLineService = async (
   fare: number
 ) => {
   const lineRepository = await getLineRepository();
+  const isExistingLine = await lineRepository.findOne({ where: { name: name } });
+  if (isExistingLine) {
+    return STATUS.TRAIN_LINE_EXIST;
+  }
+
   const stationRepository = await getStationRepository();
 
   const stationEntities = await Promise.all(

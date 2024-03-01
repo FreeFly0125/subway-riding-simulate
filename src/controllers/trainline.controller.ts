@@ -1,4 +1,4 @@
-import { TrainLineEntity } from "entities";
+import { MESSAGES, STATUS } from "consts";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import {
@@ -20,6 +20,10 @@ export const getTrainLines = async (req: Request, res: Response) => {
 
 export const createTrainLine = async (req: Request, res: Response) => {
   const { name, stations, fare } = req.body;
-  const resLine = await createLineService(name, stations, fare);
-  res.status(httpStatus.OK).json(resLine);
+  const response = await createLineService(name, stations, fare);
+  if (response === STATUS.TRAIN_LINE_EXIST) {
+    res.status(httpStatus.OK).send(MESSAGES.TRAIN_LINE_ALREADY_EXIST);
+  } else {
+    res.status(httpStatus.OK).json(response);  
+  }
 };

@@ -58,6 +58,15 @@ describe("Create trainlines and Detect route between stations", () => {
     expect(data.length).to.equal(5);
   });
 
+  it("Should new line not be created", async() => {
+    await api.post(`${API_BASE_URL}/train-line`).send(mockLines["line5"]);
+    
+    const response = await api.get("/api/v1/train-line");
+    const data = response.body;
+
+    expect(data.length).to.equal(5);
+  });
+
   it("Should detect route between stations", async () => {
     const response = await api
       .get("/api/v1/route")

@@ -1,3 +1,4 @@
+import { MESSAGES, STATUS } from "consts";
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import {
@@ -21,14 +22,25 @@ export const getStations = async (req: Request, res: Response) => {
 export const enterStation = async (req: Request, res: Response) => {
   const stationName = req.params.station;
   const { number } = req.body;
-  console.log ("paramsparamsparamsparamsparamsparams: ", req.params);
-  const cardStatus = await enterStationService(stationName, number);
-  res.status(httpStatus.OK).json(cardStatus);
+  const response = await enterStationService(stationName, number);
+
+  if (response === STATUS.CARD_NOT_EXIST) {
+    res.status(httpStatus.OK).send(MESSAGES.CARD_NOT_EXIST);
+  } else if (response === STATUS.ALREADY_RIDING) {
+    res.status(httpStatus.OK).send(MESSAGES.ALREADY_IN_SUBWAY);
+  } else if (response === STATUS.NOT_ENOUGH_MONEY) {
+    res.status(httpStatus.OK).send(MESSAGES.ALREADY_OUT_OF_SUBWAY);
+  } else {
+    res.status(httpStatus.OK).json(response);
+  }
 };
 
 export const exitStation = async (req: Request, res: Response) => {
   const stationName = req.params.station;
   const { number } = req.body;
-  const cardStatus = await exitStationService(stationName, number);
-  res.status(httpStatus.OK).json(cardStatus);
+  const response = await exitStationService(stationName, number);
+  if (response === STATUS.ALREADY_EXIT) {
+    res.status(httpStatus.OK).send(MESSAGES.ALREADY_OUT_OF_SUBWAY);
+  }
+  res.status(httpStatus.OK).json(response);
 };
